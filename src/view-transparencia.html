@@ -1,0 +1,106 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="../bower_components/paper-chip/paper-chip.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="view-transparencia">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+
+    <app-header-layout>
+      <app-header fixed condenses effects="waterfall">
+        <app-toolbar>
+          <paper-icon-button icon="menu"></paper-icon-button>
+          <div main-title>
+            Transparência
+          </div>
+          <paper-icon-button icon="star-border"></paper-icon-button>
+        </app-toolbar>
+      </app-header>
+      <section>
+        <paper-material elevation="1">
+          <paper-autocomplete id="estabelecimento-input"
+                              label="Filtros"
+                              source="[[locals]]"></paper-autocomplete>
+          <div class="">
+            <paper-chip label="Hospital Maringá" deletable>
+              <iron-icon class="icon" icon="maps:place"></iron-icon>
+            </paper-chip>
+          </div>
+        </paper-material>
+      </section>
+    </app-header-layout>
+
+  </template>
+  <script>
+    const locals = [
+      {
+        type: 'local',
+        name: 'Hospital Paraná',
+        address: 'Av. Dr Luiz Teixeira Mendes, 1929 - Zona 9',
+        city: 'Maringá',
+        state: 'Paraná',
+        cep: '87015-000',
+        phone: '(44) 3218-4000',
+      },
+      {
+        type: 'local',
+        name: 'Clínica da Saúde',
+        address: 'Rua Verde, 500',
+        city: 'Maringá',
+        state: 'Paraná',
+        cep: '87013-400',
+        phone: '(44) 3220-8782',
+      },
+      {
+        type: 'local',
+        name: 'Ambulatório 24h',
+        address: 'Rua São Judas, 3010',
+        city: 'Maringá',
+        state: 'Paraná',
+        cep: '87023-400',
+        phone: '(44) 3320-7610',
+      },
+    ];
+
+    const areas = [
+      {
+        type: 'area',
+        name: 'Geriatria',
+      },
+      {
+        type: 'area',
+        name: 'Pediatria',
+      },
+      {
+        type: 'area',
+        name: 'Psicologia',
+      }
+    ];
+
+    const searchSpace = [].concat(areas, locals);
+
+    Polymer({
+      is: 'view-transparencia',
+      properties: {
+        locals: {
+          type: Array,
+          value: function() {
+            const search = searchSpace.map(function (item) {
+              return item.name;
+            });
+            return search;
+          }
+        }
+      }
+    });
+  </script>
+</dom-module>
