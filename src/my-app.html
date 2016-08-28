@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <app-drawer-layout fullbleed>
+    <app-drawer-layout id="drawer-layout" fullbleed>
       <!-- Drawer content -->
       <app-drawer id="drawer">
         <div class="bio">
@@ -122,7 +122,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-selector selected="[[page]]"
                        attr-for-selected="name"
                        class="drawer-list"
-                       role="navigation">
+                       role="navigation"
+                       on-iron-select="_handleSelect">
           <a name="init" href="/">Início</a>
           <a name="instituicao" href="/instituicao">Instituição</a>
           <a name="transparencia" href="/transparencia">Transparência</a>
@@ -136,12 +137,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     attr-for-selected="name"
                     fallback-selection="404"
                     role="main">
-          <view-init name="init" on-menu-click="_handleMenuClick"></view-init>
-          <view-instituicao name="instituicao"></view-instituicao>
-          <view-transparencia name="transparencia"></view-transparencia>
-          <view-avaliacoes name="avaliacoes"></view-avaliacoes>
-          <view-bi name="bi"></view-bi>
-          <view-404 name="404"></view-404>
+          <view-init
+              name="init"
+              on-menu-click="_handleMenuClick"></view-init>
+          <view-instituicao
+              name="instituicao"
+              on-menu-click="_handleMenuClick"></view-instituicao>
+          <view-transparencia
+              name="transparencia"
+              on-menu-click="_handleMenuClick"></view-transparencia>
+          <view-avaliacoes
+              name="avaliacoes"
+              on-menu-click="_handleMenuClick"></view-avaliacoes>
+          <view-bi
+              name="bi"
+              on-menu-click="_handleMenuClick"></view-bi>
+          <view-404
+              name="404"
+              on-menu-click="_handleMenuClick"></view-404>
         </iron-pages>
       </main>
       <!-- <app-header-layout has-scrolling-region>
@@ -189,6 +202,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _handleMenuClick: function() {
         this.$.drawer.open();
+      },
+
+      _handleSelect: function () {
+        const isNarrow = this.$['drawer-layout'].narrow;
+        if (isNarrow) {
+          this.$.drawer.close();
+        }
       }
     });
   </script>

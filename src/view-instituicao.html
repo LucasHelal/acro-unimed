@@ -23,7 +23,7 @@
     <app-header-layout>
       <app-header fixed condenses effects="waterfall">
         <app-toolbar>
-          <paper-icon-button icon="menu"></paper-icon-button>
+          <paper-icon-button menu-icon icon="menu" on-click="_openMenu"></paper-icon-button>
           <div main-title>
             Instituição
           </div>
@@ -56,6 +56,9 @@
           },
           _getName: function(index) {
               return names[index];
+          },
+          _openMenu: function() {
+            this.fire('menu-click');
           }
         });
     }());
