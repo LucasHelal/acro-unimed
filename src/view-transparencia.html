@@ -20,6 +20,8 @@
       }
       .subhead {
         @apply(--paper-font-subhead);
+        color: var(--app-secondary-text);
+        margin-bottom: 0.5rem;
       }
       .avatar {
         display: flex;
@@ -33,6 +35,27 @@
         justify-content: center;
       }
 
+      .grid {
+        display: flex;
+        margin: 0.5rem;
+      }
+
+      .grid paper-material {
+        margin: 0;
+      }
+
+      .faturamento {
+        flex-grow: 1;
+        flex-grow: 1;
+        margin: 0;
+        margin-right: 0.5rem;
+      }
+
+      .custos {
+        flex-grow: 1;
+        flex-grow: 1;
+        margin: 0;
+      }
     </style>
 
     <app-header-layout>
@@ -49,9 +72,9 @@
         <paper-material elevation="1">
           <paper-autocomplete id="estabelecimento-input"
                               label="Filtros"
-                              source="[[locals]]"></paper-autocomplete>
+                              source="[[filters]]"></paper-autocomplete>
           <div class="">
-            <paper-chip label="Hospital Maringá" removable>
+            <paper-chip label="Pronto-Atendimento Maringá" removable>
               <iron-icon class="icon" icon="maps:place"></iron-icon>
             </paper-chip>
             <paper-chip label="Psicologia" removable>
@@ -60,114 +83,182 @@
           </div>
         </paper-material>
 
-        <paper-material elevation="1">
-          <div>
-            <paper-icon-item>
-              <div class="avatar" item-icon>
-                <iron-icon icon="social:people"></iron-icon>
-              </div>
-              <paper-item-body two-line>
-                <span>7.863</span>
-                <span secondary>Atendimentos</span>
-              </paper-item-body>
-            </paper-icon-item>
+        <section class="grid">
+          <div class="faturamento">
+            <h2 class="subhead">Entrada</h2>
+            <paper-material elevation="1">
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="social:people"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>7.863</span>
+                  <span secondary>Atendimentos</span>
+                </paper-item-body>
+              </paper-icon-item>
 
-            <paper-icon-item>
-              <div class="avatar" item-icon>
-                <iron-icon icon="editor:attach-money"></iron-icon>
-              </div>
-              <paper-item-body two-line>
-                <span>R$ 10.765,90</span>
-                <span secondary>Faturamento</span>
-              </paper-item-body>
-            </paper-icon-item>
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="arrow-forward"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>R$ 10.765,90</span>
+                  <span secondary>Faturamento</span>
+                </paper-item-body>
+              </paper-icon-item>
 
 
-            <paper-icon-item>
-              <div class="avatar" item-icon>
-                <iron-icon icon="account-circle"></iron-icon>
-              </div>
-              <paper-item-body two-line>
-                <span>32</span>
-                <span secondary>Colaboradores</span>
-              </paper-item-body>
-            </paper-icon-item>
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="icons:arrow-back"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>8%</span>
+                  <span secondary>Sinistralidade</span>
+                </paper-item-body>
+              </paper-icon-item>
+            </paper-material>
           </div>
-        </paper-material>
+
+          <div class="custos">
+            <h2 class="subhead">Saída</h2>
+            <paper-material elevation="1">
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="work"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>R$ 1.650,45</span>
+                  <span secondary>Administração e Operacional</span>
+                </paper-item-body>
+              </paper-icon-item>
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="editor:attach-money"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>R$ 1.650,45</span>
+                  <span secondary>Financeiro e Contabilidade</span>
+                </paper-item-body>
+              </paper-icon-item>
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="dns"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>R$ 1.650,45</span>
+                  <span secondary>Tecnologia da Informação</span>
+                </paper-item-body>
+              </paper-icon-item>
+              <paper-icon-item>
+                <div class="avatar" item-icon>
+                  <iron-icon icon="question-answer"></iron-icon>
+                </div>
+                <paper-item-body two-line>
+                  <span>R$ 1.650,45</span>
+                  <span secondary>Marketing e Comunidação</span>
+                </paper-item-body>
+              </paper-icon-item>
+            </paper-material>
+          </div>
+
+
+        </section>
       </section>
     </app-header-layout>
 
   </template>
   <script>
-    const locals = [
-      {
-        type: 'local',
-        name: 'Hospital Paraná',
-        address: 'Av. Dr Luiz Teixeira Mendes, 1929 - Zona 9',
-        city: 'Maringá',
-        state: 'Paraná',
-        cep: '87015-000',
-        phone: '(44) 3218-4000',
-      },
-      {
-        type: 'local',
-        name: 'Clínica da Saúde',
-        address: 'Rua Verde, 500',
-        city: 'Maringá',
-        state: 'Paraná',
-        cep: '87013-400',
-        phone: '(44) 3220-8782',
-      },
-      {
-        type: 'local',
-        name: 'Ambulatório 24h',
-        address: 'Rua São Judas, 3010',
-        city: 'Maringá',
-        state: 'Paraná',
-        cep: '87023-400',
-        phone: '(44) 3320-7610',
-      },
-      {
-        type: 'local',
-        name: 'Bancos de Sangue',
-        address: 'Rua São Judas, 3010',
-        city: 'Maringá',
-        state: 'Paraná',
-        cep: '87023-400',
-        phone: '(44) 3320-7610',
-      },
-    ];
-
-    const areas = [
-      {
-        type: 'area',
-        name: 'Geriatria',
-      },
-      {
-        type: 'area',
-        name: 'Pediatria',
-      },
-      {
-        type: 'area',
-        name: 'Psicologia',
+    (function(Polymer) {
+      'use strict';
+      function localFactory(name, address, city, state, cep, phone) {
+        return {
+          type: 'local',
+          name: name,
+          address: address,
+          city: city,
+          state: state,
+          cep: cep,
+          phone: phone,
+        };
       }
-    ];
 
-    const searchSpace = [].concat(areas, locals);
+      function areaFactory(name) {
+        return {
+          type: 'area',
+          name: name
+        };
+      }
 
-    Polymer({
-      is: 'view-transparencia',
-      properties: {
-        locals: {
-          type: Array,
-          value: function() {
-            const search = searchSpace.map(function (item) {
-              return item.name;
+      function sectorFactory(name) {
+        return {
+          type: 'sector',
+          name: name
+        };
+      }
+
+      const locals = [
+        localFactory(
+          'Clínica da Saúde', 'Rua Verde, 500',
+          'Maringá', 'Paraná', '87013-400',
+          '(44) 3220-8782'
+        ),
+        localFactory(
+          'Ambulatório 24h', 'Rua São Judas, 3010',
+          'Maringá', 'Paraná', '87013-400',
+          '(44) 3320-7610'
+        ),
+        localFactory(
+          'Clínica da Saúde', 'Rua Verde, 500',
+          'Maringá', 'Paraná', '87013-400',
+          '(44) 3220-8782'
+        ),
+        localFactory(
+          'Bancos de Sangue', 'Rua São Judas, 3010',
+          'Maringá', 'Paraná', '87023-400',
+          '(44) 3320-7610'
+        )
+      ];
+
+      const areas = [
+        areaFactory('Pediatria'),
+        areaFactory('Geriatria'),
+        areaFactory('Psicologia'),
+      ];
+
+      const sectors = [
+        sectorFactory('Diretoria de Tecnologia'),
+        sectorFactory('Diretoria de Integração'),
+        sectorFactory('Diretoria Financeira'),
+        sectorFactory('Diretoria Administrativa'),
+      ]
+
+      const search = [].concat(locals, areas, sectors);
+
+      Polymer({
+        is: 'view-transparencia',
+        properties: {
+          filters: {
+            type: Array,
+            value: function() {
+              return search.map(function (item) {
+                switch (item.type) {
+                  case 'local':
+                    return 'Estabelecimento: ' + item.name;
+                  case 'sector':
+                    return 'Setor: ' + item.name;
+                    break;
+                  case 'area':
+                    return 'Especialidade: ' + item.name;
+                    break;
+                  default:
+                    return "";
+              }
             });
-            return search;
           }
         }
       }
     });
+    }(Polymer));
   </script>
 </dom-module>

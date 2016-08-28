@@ -96,85 +96,88 @@
 
   </template>
   <script>
-  function localFactory(name, address, city, state, cep, phone) {
-    return {
-      type: 'local',
-      name: name,
-      address: address,
-      city: city,
-      state: state,
-      cep: cep,
-      phone: phone,
-    };
-  }
+  (function(Polymer) {
+    'use strict';
 
-  function diseaseFactory(name) {
-    return {
-      type: 'dicease',
-      name: name
-    };
-  }
+    function localFactory(name, address, city, state, cep, phone) {
+      return {
+        type: 'local',
+        name: name,
+        address: address,
+        city: city,
+        state: state,
+        cep: cep,
+        phone: phone,
+      };
+    }
 
-  function areaFactory(name) {
-    return {
-      type: 'area',
-      name: name
-    };
-  }
+    function diseaseFactory(name) {
+      return {
+        type: 'dicease',
+        name: name
+      };
+    }
 
-  function ageFactory(start, end) {
-    return {
-      type: 'age',
-      start: start,
-      end: end
-    };
-  }
+    function areaFactory(name) {
+      return {
+        type: 'area',
+        name: name
+      };
+    }
 
-  const locals = [
-    localFactory(
-      'Clínica da Saúde', 'Rua Verde, 500',
-      'Maringá', 'Paraná', '87013-400',
-      '(44) 3220-8782'
-    ),
-    localFactory(
-      'Ambulatório 24h', 'Rua São Judas, 3010',
-      'Maringá', 'Paraná', '87013-400',
-      '(44) 3320-7610'
-    ),
-    localFactory(
-      'Clínica da Saúde', 'Rua Verde, 500',
-      'Maringá', 'Paraná', '87013-400',
-      '(44) 3220-8782'
-    ),
-    localFactory(
-      'Bancos de Sangue', 'Rua São Judas, 3010',
-      'Maringá', 'Paraná', '87023-400',
-      '(44) 3320-7610'
-    )
-  ];
+    function ageFactory(start, end) {
+      return {
+        type: 'age',
+        start: start,
+        end: end
+      };
+    }
 
-  const diceases = [
-    diseaseFactory('H1N1'),
-    diseaseFactory('Diabetes'),
-    diseaseFactory('Alzheimer'),
-    diseaseFactory('Obesidade')
-  ];
+    const locals = [
+      localFactory(
+        'Clínica da Saúde', 'Rua Verde, 500',
+        'Maringá', 'Paraná', '87013-400',
+        '(44) 3220-8782'
+      ),
+      localFactory(
+        'Ambulatório 24h', 'Rua São Judas, 3010',
+        'Maringá', 'Paraná', '87013-400',
+        '(44) 3320-7610'
+      ),
+      localFactory(
+        'Clínica da Saúde', 'Rua Verde, 500',
+        'Maringá', 'Paraná', '87013-400',
+        '(44) 3220-8782'
+      ),
+      localFactory(
+        'Bancos de Sangue', 'Rua São Judas, 3010',
+        'Maringá', 'Paraná', '87023-400',
+        '(44) 3320-7610'
+      )
+    ];
 
-  const areas = [
-    areaFactory('Pediatria'),
-    areaFactory('Geriatria'),
-    areaFactory('Psicologia'),
-  ];
+    const diceases = [
+      diseaseFactory('H1N1'),
+      diseaseFactory('Diabetes'),
+      diseaseFactory('Alzheimer'),
+      diseaseFactory('Obesidade')
+    ];
 
-  const age = [
-    ageFactory(0, 5),
-    ageFactory(5, 10),
-    ageFactory(10, 20),
-    ageFactory(20, 60),
-    ageFactory(60, 120)
-  ];
+    const areas = [
+      areaFactory('Pediatria'),
+      areaFactory('Geriatria'),
+      areaFactory('Psicologia'),
+    ];
 
-  const search = [].concat(locals, diceases, areas, age);
+    const age = [
+      ageFactory(0, 5),
+      ageFactory(5, 10),
+      ageFactory(10, 20),
+      ageFactory(20, 60),
+      ageFactory(60, 120)
+    ];
+
+    const search = [].concat(locals, diceases, areas, age);
 
 
     Polymer({
@@ -211,5 +214,6 @@
         }
       },
     });
+  }(Polymer));
   </script>
 </dom-module>
