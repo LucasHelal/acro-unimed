@@ -37,8 +37,25 @@
 
       .grid {
         display: flex;
+        flex-direction: column;
         margin: 0.5rem;
       }
+
+      @media (min-width: 40rem) {
+        .grid {
+          flex-direction: row;
+        }
+      }
+
+      .grid .section {
+        width: 100%;
+      }
+      @media (min-width: 40rem) {
+        .grid .section {
+          width: 50%;
+        }
+      }
+
 
       .grid paper-material {
         margin: 0;
@@ -46,13 +63,11 @@
 
       .faturamento {
         flex-grow: 1;
-        flex-grow: 1;
         margin: 0;
         margin-right: 0.5rem;
       }
 
       .custos {
-        flex-grow: 1;
         flex-grow: 1;
         margin: 0;
       }
@@ -84,7 +99,7 @@
         </paper-material>
 
         <section class="grid">
-          <div class="faturamento">
+          <div class="section faturamento">
             <h2 class="subhead">Entrada</h2>
             <paper-material elevation="1">
               <paper-icon-item>
@@ -120,7 +135,7 @@
             </paper-material>
           </div>
 
-          <div class="custos">
+          <div class="section custos">
             <h2 class="subhead">Saída</h2>
             <paper-material elevation="1">
               <paper-icon-item>
