@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
         padding: 5rem 1rem 1rem 1rem;
         background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)),
-                          url('../images/backgroud.png');
+                          url('../images/background.jpg');
         background-size: cover;
       }
       .bio .photo {
@@ -93,6 +93,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .bio .info {
         @apply(--paper-font-caption);
         color: var(--app-white-text);
+      }
+      #img-logo {
+          display: block;
+          width: 60%;
+          margin-top: 1rem;
+          margin-left: 1rem;
       }
     </style>
 
@@ -128,6 +134,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="instituicao" href="/instituicao">Instituição</a>
           <a name="transparencia" href="/transparencia">Transparência</a>
           <a name="bi" href="/bi">Estatísticas</a>
+          <img id="img-logo" src="../images/logo2.png" alt="Logo Unimed"/>
         </iron-selector>
       </app-drawer>
 
