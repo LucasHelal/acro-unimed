@@ -84,6 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                        attr-for-selected="name"
                        class="drawer-list"
                        role="navigation">
+          <a name="init" href="/">Início</a>
           <a name="instituicao" href="/instituicao">Instituição</a>
           <a name="transparencia" href="/transparencia">Transparência</a>
           <a name="avaliacoes" href="/avaliacoes">Avaliações</a>
@@ -93,16 +94,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <!-- Main content -->
       <main>
-        <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
+        <iron-pages selected="[[page]]"
+                    attr-for-selected="name"
+                    fallback-selection="404"
+                    role="main">
+          <view-init name="init"></view-init>
           <view-instituicao name="instituicao"></view-instituicao>
           <view-transparencia name="transparencia"></view-transparencia>
           <view-avaliacoes name="avaliacoes"></view-avaliacoes>
           <view-bi name="bi"></view-bi>
-          <view-404 name="view404"></view-404>
+          <view-404 name="404"></view-404>
         </iron-pages>
       </main>
       <!-- <app-header-layout has-scrolling-region>
@@ -135,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'view1';
+        this.page = page || 'init';
       },
 
       _pageChanged: function(page) {
@@ -145,7 +146,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _showPage404: function() {
-        this.page = 'view404';
+        this.page = '404';
       }
     });
   </script>
