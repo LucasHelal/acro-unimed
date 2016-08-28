@@ -12,6 +12,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="shared-styles.html">
@@ -54,11 +55,16 @@
       }
 
       .grid .section {
-        width: 50%;
+        width: calc(100% - 1rem);
         margin: 0.5rem  0 0.5rem 0.5rem;
       }
       .grid .section:last-child {
         margin-right: 0.5rem;
+      }
+      @media (min-width: 40rem) {
+        .grid .section {
+          width: 50%;
+        }
       }
 
       .secondary iron-icon{
@@ -81,8 +87,7 @@
         </app-toolbar>
       </app-header>
 
-      <div class="section participacao">
-      </div>
+      <iron-media-query query="(min-width: 40rem)" query-matches="{{queryMatches}}"></iron-media-query>
 
       <div class="grid">
         <div class="section receitas">
@@ -95,34 +100,39 @@
                 <span>Receita</span>
                 <span secondary>R$ 6.982,50</span>
               </paper-item-body>
-              <paper-icon-button icon="expand-less"></paper-icon-button>
+              <paper-icon-button id="receipt-collapse-button"
+                                 icon="expand-less"
+                                 on-click="_toogleReceiptCollapse"></paper-icon-button>
             </paper-icon-item>
 
-            <paper-icon-item class="secondary">
-              <iron-icon icon="notification:event-note" item-icon></iron-icon>
-              <paper-item-body two-line>
-                <span>R$ 62,00</span>
-                <span secondary>Consulta em 26/08 16h30</span>
-              </paper-item-body>
-            </paper-icon-item>
-            <paper-icon-item class="secondary">
-              <iron-icon icon="notification:event-note" item-icon></iron-icon>
-              <paper-item-body two-line>
-                <span>R$ 62,00</span>
-                <span secondary>Consulta em 26/08 14h15</span>
-              </paper-item-body>
-            </paper-icon-item>
-            <paper-icon-item class="secondary">
-              <iron-icon icon="maps:local-hospital" item-icon></iron-icon>
-              <paper-item-body two-line>
-                <span>R$ 2.500,00</span>
-                <span secondary>Atendimento Hospital</span>
-              </paper-item-body>
-            </paper-icon-item>
+            <iron-collapse id="receipt-collapse"
+                           on-opened-changed="_openedReceiptCollapseChanged">
+              <paper-icon-item class="secondary">
+                <iron-icon icon="notification:event-note" item-icon></iron-icon>
+                <paper-item-body two-line>
+                  <span>R$ 62,00</span>
+                  <span secondary>Consulta em 26/08 16h30</span>
+                </paper-item-body>
+              </paper-icon-item>
+              <paper-icon-item class="secondary">
+                <iron-icon icon="notification:event-note" item-icon></iron-icon>
+                <paper-item-body two-line>
+                  <span>R$ 62,00</span>
+                  <span secondary>Consulta em 26/08 14h15</span>
+                </paper-item-body>
+              </paper-icon-item>
+              <paper-icon-item class="secondary">
+                <iron-icon icon="maps:local-hospital" item-icon></iron-icon>
+                <paper-item-body two-line>
+                  <span>R$ 2.500,00</span>
+                  <span secondary>Atendimento Hospital</span>
+                </paper-item-body>
+              </paper-icon-item>
 
-            <paper-button class="more">
-              Mais
-            </paper-button>
+              <paper-button class="more">
+                Mais
+              </paper-button>
+            </iron-collapse>
           </paper-material>
         </div>
 
@@ -136,34 +146,39 @@
                   <span>Despesas</span>
                   <span secondary>R$ 2.049,00</span>
                 </paper-item-body>
-                <paper-icon-button icon="expand-less"></paper-icon-button>
+                <paper-icon-button id="costs-collapse-button"
+                                   icon="expand-less"
+                                   on-click="_toogleCostsCollapse"></paper-icon-button>
               </paper-icon-item>
 
-              <paper-icon-item class="secondary">
-                <iron-icon icon="device:data-usage" item-icon></iron-icon>
-                <paper-item-body two-line>
-                  <span>R$ 1.100,00</span>
-                  <span secondary>Quota</span>
-                </paper-item-body>
-              </paper-icon-item>
-              <paper-icon-item class="secondary">
-                <iron-icon icon="maps:layers" item-icon></iron-icon>
-                <paper-item-body two-line>
-                  <span>R$ 200,00</span>
-                  <span secondary>Imposto</span>
-                </paper-item-body>
-              </paper-icon-item>
-              <paper-icon-item class="secondary">
-                <iron-icon icon="maps:layers" item-icon></iron-icon>
-                <paper-item-body two-line>
-                  <span>R$ 122,00</span>
-                  <span secondary>Imposto</span>
-                </paper-item-body>
-              </paper-icon-item>
+              <iron-collapse id="costs-collapse"
+                             on-opened-changed="_openedCostsCollapseChanged">
+                <paper-icon-item class="secondary">
+                  <iron-icon icon="device:data-usage" item-icon></iron-icon>
+                  <paper-item-body two-line>
+                    <span>R$ 1.100,00</span>
+                    <span secondary>Quota</span>
+                  </paper-item-body>
+                </paper-icon-item>
+                <paper-icon-item class="secondary">
+                  <iron-icon icon="maps:layers" item-icon></iron-icon>
+                  <paper-item-body two-line>
+                    <span>R$ 200,00</span>
+                    <span secondary>Imposto</span>
+                  </paper-item-body>
+                </paper-icon-item>
+                <paper-icon-item class="secondary">
+                  <iron-icon icon="maps:layers" item-icon></iron-icon>
+                  <paper-item-body two-line>
+                    <span>R$ 122,00</span>
+                    <span secondary>Imposto</span>
+                  </paper-item-body>
+                </paper-icon-item>
 
-              <paper-button class="more">
-                Mais
-              </paper-button>
+                <paper-button class="more">
+                  Mais
+                </paper-button>
+              </iron-collapse>
             </paper-material>
         </div>
       </div>
@@ -174,9 +189,52 @@
     Polymer({
       is: 'view-init',
 
+      properties: {
+        queryMatches: {
+          type: Boolean,
+          observer: '_queryMatchesObserver'
+        }
+      },
+
       _openMenu: function() {
         this.fire('menu-click');
-      }
+      },
+
+      _queryMatchesObserver: function(isWide) {
+        if (isWide) {
+          this.$['receipt-collapse'].show();
+          this.$['costs-collapse'].show();
+        } else {
+          this.$['receipt-collapse'].hide();
+          this.$['costs-collapse'].hide();
+        }
+      },
+
+      _openedReceiptCollapseChanged: function (event) {
+        const opened = event.detail.value;
+        if (opened) {
+          this.$['receipt-collapse-button'].icon = "expand-less";
+        } else {
+          this.$['receipt-collapse-button'].icon = "expand-more";
+        }
+      },
+
+      _openedCostsCollapseChanged: function (event) {
+        const opened = event.detail.value;
+        if (opened) {
+          this.$['costs-collapse-button'].icon = "expand-less";
+        } else {
+          this.$['costs-collapse-button'].icon = "expand-more";
+        }
+      },
+
+      _toogleReceiptCollapse: function () {
+        this.$['receipt-collapse'].toggle();
+      },
+
+      _toogleCostsCollapse: function () {
+        this.$['costs-collapse'].toggle();
+      },
     });
   </script>
 </dom-module>
