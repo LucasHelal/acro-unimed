@@ -2,9 +2,14 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-icons/editor-icons.html">
 <link rel="import" href="../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
 <link rel="import" href="../bower_components/paper-chip/paper-chip.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="view-transparencia">
@@ -13,6 +18,22 @@
       :host {
         display: block;
       }
+      .subhead {
+        @apply(--paper-font-subhead);
+      }
+      .avatar {
+        display: flex;
+        box-sizing: border-box;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--app-primary-color);
+        color: var(--app-white-text);
+        align-items: center;
+        justify-content: center;
+
+      }
+
     </style>
 
     <app-header-layout>
@@ -31,9 +52,47 @@
                               label="Filtros"
                               source="[[locals]]"></paper-autocomplete>
           <div class="">
-            <paper-chip label="Hospital Maringá" deletable>
+            <paper-chip label="Hospital Maringá" removable>
               <iron-icon class="icon" icon="maps:place"></iron-icon>
             </paper-chip>
+            <paper-chip label="Psicologia" removable>
+              <iron-icon class="icon" icon="social:person"></iron-icon>
+            </paper-chip>
+          </div>
+        </paper-material>
+
+        <paper-material elevation="1">
+          <div>
+            <paper-icon-item>
+              <div class="avatar" item-icon>
+                <iron-icon icon="social:people"></iron-icon>
+              </div>
+              <paper-item-body two-line>
+                <span>7.863</span>
+                <span secondary>Atendimentos</span>
+              </paper-item-body>
+            </paper-icon-item>
+
+            <paper-icon-item>
+              <div class="avatar" item-icon>
+                <iron-icon icon="editor:attach-money"></iron-icon>
+              </div>
+              <paper-item-body two-line>
+                <span>R$ 10.765,90</span>
+                <span secondary>Faturamento</span>
+              </paper-item-body>
+            </paper-icon-item>
+
+
+            <paper-icon-item>
+              <div class="avatar" item-icon>
+                <iron-icon icon="account-circle"></iron-icon>
+              </div>
+              <paper-item-body two-line>
+                <span>32</span>
+                <span secondary>Colaboradores</span>
+              </paper-item-body>
+            </paper-icon-item>
           </div>
         </paper-material>
       </section>
