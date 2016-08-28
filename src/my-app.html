@@ -67,6 +67,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         font-weight: bold;
       }
+
+      .bio {
+        display: flex;
+        padding: 5rem 1rem 1rem 1rem;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)),
+                          url('../images/backgroud.png');
+        background-size: cover;
+      }
+      .bio .photo {
+        width: 40px;
+      }
+      .bio .photo img {
+        width: 100%;
+        border-radius: 50%;
+      }
+      .bio .text {
+        flex-grow: 1;
+        margin-left: 0.5rem;
+      }
+      .bio .name {
+        @apply(--paper-font-subhead);
+        color: var(--app-white-text);
+      }
+      .bio .info {
+        @apply(--paper-font-caption);
+        color: var(--app-white-text);
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -78,8 +105,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-drawer-layout fullbleed>
       <!-- Drawer content -->
-      <app-drawer>
-        <app-toolbar>Menu</app-toolbar>
+      <app-drawer id="drawer">
+        <div class="bio">
+          <div class="photo">
+            <img src="/images/avatar.png" alt="Avatar do médico"/>
+          </div>
+          <div class="text">
+            <div class="name">
+              Gabriela Vieira
+            </div>
+            <div class="info">
+              Neurologista
+            </div>
+          </div>
+        </div>
         <iron-selector selected="[[page]]"
                        attr-for-selected="name"
                        class="drawer-list"
@@ -87,7 +126,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <a name="init" href="/">Início</a>
           <a name="instituicao" href="/instituicao">Instituição</a>
           <a name="transparencia" href="/transparencia">Transparência</a>
-          <a name="avaliacoes" href="/avaliacoes">Avaliações</a>
           <a name="bi" href="/bi">Estatísticas</a>
         </iron-selector>
       </app-drawer>
@@ -98,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     attr-for-selected="name"
                     fallback-selection="404"
                     role="main">
-          <view-init name="init"></view-init>
+          <view-init name="init" on-menu-click="_handleMenuClick"></view-init>
           <view-instituicao name="instituicao"></view-instituicao>
           <view-transparencia name="transparencia"></view-transparencia>
           <view-avaliacoes name="avaliacoes"></view-avaliacoes>
@@ -147,6 +185,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _showPage404: function() {
         this.page = '404';
+      },
+
+      _handleMenuClick: function() {
+        this.$.drawer.open();
       }
     });
   </script>

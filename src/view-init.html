@@ -63,7 +63,7 @@
     <app-header-layout>
       <app-header fixed condenses effects="waterfall">
         <app-toolbar>
-          <paper-icon-button icon="menu"></paper-icon-button>
+          <paper-icon-button icon="menu" on-click="_openMenu"></paper-icon-button>
           <div main-title>
             Início
           </div>
@@ -163,7 +163,11 @@
   </template>
   <script>
     Polymer({
-      is: 'view-init'
+      is: 'view-init',
+
+      _openMenu: function() {
+        this.fire('menu-click');
+      }
     });
   </script>
 </dom-module>

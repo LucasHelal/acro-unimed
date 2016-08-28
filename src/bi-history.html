@@ -18,7 +18,8 @@
       }
     </style>
     <div id="chart-container">
-      <google-chart type="line"
+      <google-chart id="map"
+                    type="line"
                     options="[[options]]"
                     cols="[[cols]]"
                     rows="[[rows]]">
@@ -78,6 +79,10 @@
             ];
           }
         }
+      },
+
+      draw: function() {
+        this.$.map.redraw();
       }
     });
   </script>

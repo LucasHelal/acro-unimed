@@ -75,7 +75,8 @@
           </section>
 
           <div>
-            <paper-tabs selected="{{selected}}">
+            <paper-tabs selected="{{selected}}"
+                        on-iron-select="_onTabSelect">
               <paper-tab>Mapa</paper-tab>
               <paper-tab>Histórico</paper-tab>
             </paper-tabs>
@@ -83,10 +84,10 @@
           <div>
             <iron-pages selected="{{selected}}">
               <section>
-                <bi-map></bi-map>
+                <bi-map id="map"></bi-map>
               </section>
               <section>
-                <bi-history></bi-history>
+                <bi-history id="history"></bi-history>
               </section>
             </iron-pages>
           </div>
@@ -210,7 +211,13 @@
         },
         selected: {
           type: Number,
-          value: 1
+          value: 0
+        }
+      },
+
+      _onTabSelect: function() {
+        if (this.selected == 1) {
+          this.$.history.draw();
         }
       },
     });
