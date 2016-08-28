@@ -1,6 +1,4 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
-<link rel="import" href="../bower_components/paper-chip/paper-chip.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
 <link rel="import" href="../bower_components/google-map/google-map-marker.html">
 
@@ -16,25 +14,7 @@
       #map-container {
         height: 25rem;
       }
-      #form-container {
-        padding: 0.5rem;
-      }
-
     </style>
-
-    <section id="form-container">
-      <paper-autocomplete id="estabelecimento-input"
-                          label="Filtros"
-                          source="[[locals]]"></paper-autocomplete>
-      <div>
-        <paper-chip label="Clínica da Saúde" removable>
-          <iron-icon class="icon" icon="maps:place"></iron-icon>
-        </paper-chip>
-        <paper-chip label="15-20" removable>
-          <iron-icon class="icon" icon="supervisor-account"></iron-icon>
-        </paper-chip>
-      </div>
-    </section>
 
     <section id="map-container">
       <google-map id="google-map"
@@ -50,14 +30,10 @@
       </google-map>
     </section>
 
-
-
-
   </template>
   <script>
     (function() {
       'use strict';
-
       Polymer({
         is: 'bi-map',
         properties: {
@@ -86,8 +62,8 @@
         _getLocations: function () {
           const latitude = this.latitude,
                 longitude = this.longitude,
-                rate = 15,
-                maximum = 500;
+                rate = 30,
+                maximum = 15;
           const locations = [];
           for (var i = 0; i < maximum; i++) {
             const delta_latitude = Math.random() / rate,
@@ -143,7 +119,7 @@
             data: spotData
           });
           this.heatMap.setMap(map);
-          this.heatMap.set('radius', 10);
+          this.heatMap.set('radius', 70);
         }
       });
     })();

@@ -8,7 +8,10 @@
 <link rel="import" href="../bower_components/paper-material/paper-material.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="../bower_components/paper-chip/paper-chip.html">
 <link rel="import" href="bi-map.html">
+<link rel="import" href="bi-history.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="view-bi">
@@ -37,6 +40,10 @@
         padding: 0;
       }
 
+      #form-container {
+        padding: 0.5rem;
+      }
+
     </style>
 
     <app-header-layout>
@@ -51,6 +58,20 @@
       </app-header>
       <section>
         <paper-material elevation="1">
+          <section id="form-container">
+            <paper-autocomplete id="estabelecimento-input"
+                                label="Filtros"
+                                source="[[filters]]"></paper-autocomplete>
+            <div>
+              <paper-chip label="Patologia: Obesidade" removable>
+                <iron-icon class="icon" icon="favorite"></iron-icon>
+              </paper-chip>
+              <paper-chip label="Idade: 5-10" removable>
+                <iron-icon class="icon" icon="supervisor-account"></iron-icon>
+              </paper-chip>
+            </div>
+          </section>
+
           <div>
             <paper-tabs selected="0">
               <paper-tab>Mapa</paper-tab>
@@ -58,7 +79,8 @@
             </paper-tabs>
           </div>
           <div>
-            <bi-map></bi-map>
+            <bi-history></bi-history>
+            <!-- <bi-map></bi-map> -->
           </div>
         </paper-material>
       </section>
@@ -66,11 +88,115 @@
 
   </template>
   <script>
+  function localFactory(name, address, city, state, cep, phone) {
+    return {
+      type: 'local',
+      name: name,
+      address: address,
+      city: city,
+      state: state,
+      cep: cep,
+      phone: phone,
+    };
+  }
+
+  function diseaseFactory(name) {
+    return {
+      type: 'dicease',
+      name: name
+    };
+  }
+
+  function areaFactory(name) {
+    return {
+      type: 'area',
+      name: name
+    };
+  }
+
+  function ageFactory(start, end) {
+    return {
+      type: 'age',
+      start: start,
+      end: end
+    };
+  }
+
+  const locals = [
+    localFactory(
+      'Clínica da Saúde', 'Rua Verde, 500',
+      'Maringá', 'Paraná', '87013-400',
+      '(44) 3220-8782'
+    ),
+    localFactory(
+      'Ambulatório 24h', 'Rua São Judas, 3010',
+      'Maringá', 'Paraná', '87013-400',
+      '(44) 3320-7610'
+    ),
+    localFactory(
+      'Clínica da Saúde', 'Rua Verde, 500',
+      'Maringá', 'Paraná', '87013-400',
+      '(44) 3220-8782'
+    ),
+    localFactory(
+      'Bancos de Sangue', 'Rua São Judas, 3010',
+      'Maringá', 'Paraná', '87023-400',
+      '(44) 3320-7610'
+    )
+  ];
+
+  const diceases = [
+    diseaseFactory('H1N1'),
+    diseaseFactory('Diabetes'),
+    diseaseFactory('Alzheimer'),
+    diseaseFactory('Obesidade')
+  ];
+
+  const areas = [
+    areaFactory('Pediatria'),
+    areaFactory('Geriatria'),
+    areaFactory('Psicologia'),
+  ];
+
+  const age = [
+    ageFactory(0, 5),
+    ageFactory(5, 10),
+    ageFactory(10, 20),
+    ageFactory(20, 60),
+    ageFactory(60, 120)
+  ];
+
+  const search = [].concat(locals, diceases, areas, age);
 
 
     Polymer({
       is: 'view-bi',
       properties: {
+        filters: {
+          type: Array,
+          value: function() {
+            return search.map(function (item) {
+              switch (item.type) {
+                case 'local':
+                  return 'Estabelecimento: ' + item.name;
+                case 'dicease':
+                  return 'Patologia: ' + item.name;
+                  break;
+                case 'area':
+                  return 'Especialidade: ' + item.name;
+                  break;
+                case 'age':
+                  return 'Idade: ' +
+                         item.start +
+                         '-' +
+                         item.end;
+                  break;
+                default:
+                  return "";
+              }
+            });
+          }
+        }
       }
     });
   </script>
