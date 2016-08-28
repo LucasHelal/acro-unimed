@@ -10,6 +10,8 @@
 <link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
 <link rel="import" href="../bower_components/paper-autocomplete/paper-autocomplete.html">
 <link rel="import" href="../bower_components/paper-chip/paper-chip.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
 <link rel="import" href="bi-map.html">
 <link rel="import" href="bi-history.html">
 <link rel="import" href="shared-styles.html">
@@ -73,14 +75,20 @@
           </section>
 
           <div>
-            <paper-tabs selected="0">
+            <paper-tabs selected="{{selected}}">
               <paper-tab>Mapa</paper-tab>
               <paper-tab>Histórico</paper-tab>
             </paper-tabs>
           </div>
           <div>
-            <bi-history></bi-history>
-            <!-- <bi-map></bi-map> -->
+            <iron-pages selected="{{selected}}">
+              <section>
+                <bi-map></bi-map>
+              </section>
+              <section>
+                <bi-history></bi-history>
+              </section>
+            </iron-pages>
           </div>
         </paper-material>
       </section>
@@ -196,8 +204,12 @@
               }
             });
           }
+        },
+        selected: {
+          type: Number,
+          value: 1
         }
-      }
+      },
     });
   </script>
 </dom-module>
