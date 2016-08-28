@@ -11,6 +11,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 
 <link rel="import" href="../bower_components/paper-styles/typography.html">
 <link rel="import" href="shared-styles.html">
@@ -37,19 +38,29 @@
         align-items: center;
         justify-content: center;
       }
-      .section {
-        margin: 0.5rem;
-      }
+
       .section paper-material {
         margin: 0;
         padding: 0;
       }
       .grid {
         display: flex;
+        flex-direction: column;
       }
+      @media (min-width: 40rem) {
+        .grid {
+          flex-direction: row;
+        }
+      }
+
       .grid .section {
         width: 50%;
+        margin: 0.5rem  0 0.5rem 0.5rem;
       }
+      .grid .section:last-child {
+        margin-right: 0.5rem;
+      }
+
       .secondary iron-icon{
         color: var(--app-secondary-text);
       }
@@ -67,7 +78,6 @@
           <div main-title>
             Início
           </div>
-          <!-- <paper-icon-button icon="star-border"></paper-icon-button> -->
         </app-toolbar>
       </app-header>
 
