@@ -1,88 +1,36 @@
-# Polymer App Toolbox - Starter Kit
+# Hackathon Unimed
 
-[![Build Status](https://travis-ci.org/PolymerElements/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/PolymerElements/polymer-starter-kit)
+Durante os dias 27 e 28 agosto de 2016, em um hackathon proposto pela Unimed Maringá,
+nossa equipe compostas por três desenvolvedores, Lucas, Marco e Max, e por um design, Raul :D
 
-This template is a starting point for building apps using a drawer-based
-layout. The layout is provided by `app-layout` elements.
-
-This template, along with the `polymer-cli` toolchain, also demonstrates use
-of the "PRPL pattern" This pattern allows fast first delivery and interaction with
-the content at the initial route requested by the user, along with fast subsequent
-navigation by pre-caching the remaining components required by the app and
-progressively loading them on-demand as the user navigates through the app.
-
-The PRPL pattern, in a nutshell:
-
-* **Push** components required for the initial route
-* **Render** initial route ASAP
-* **Pre-cache** components for remaining routes
-* **Lazy-load** and progressively upgrade next routes on-demand
-
-### Migrating from Polymer Starter Kit v1?
-
-[Check out our blog post that covers what's changed in PSK2 and how to migrate!](https://www.polymer-project.org/1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli.html)
-
-### Setup
-
-##### Prerequisites
-
-Install [polymer-cli](https://github.com/Polymer/polymer-cli):
-
-    npm install -g polymer-cli
-
-##### Initialize project from template
-
-    mkdir my-app
-    cd my-app
-    polymer init starter-kit
-
-### Start the development server
-
-This command serves the app at `http://localhost:8080` and provides basic URL
-routing for the app:
-
-    polymer serve --open
+No final de semana baseado em propor uma solução para a cooperativa, a equipe Acro teve sua 
+proposta de valor composta em duas vertentes a primeira, visando os sócios que são os médicos 
+cooperados e ainda gerando um solução para cooperativa a nível administrativo. Sendo possível
+tomar decisões estratégicas principalmente quando se fala em medicina preventiva.
 
 
-### Build
+-----
+Estamos fazendo a aplicação para o cooperado..   O medico, que é socio/cooperado vai ter acesso a informações da cooperativa como um todo e também os detalhes da sua empresa/clinica (ou seja, quem ele atende via unimed).
 
-This command performs HTML, CSS, and JS minification on the application
-dependencies, and generates a service-worker.js file with code to pre-cache the
-dependencies based on the entrypoint and fragments specified in `polymer.json`.
-The minified files are output to the `build/unbundled` folder, and are suitable
-for serving from a HTTP/2+Push compatible server.
+Como todo cooperado/sócio além de exercer seu trabalho como médico ele também deve exercer um trabalho de um bom gestor, por isso a primeira funcionalidade do sistema é um controle de suas despesas e suas receitas :D
 
-In addition the command also creates a fallback `build/bundled` folder,
-generated using fragment bundling, suitable for serving from non
-H2/push-compatible servers or to clients that do not support H2/Push.
+A “Instituição”, nesta funcionalidade tem se informações estáticas sobre a cooperativa, tais como regulamentos, estatutos, termos e por ae...
 
-    polymer build
+Funcionalidade inicial é a "Transparência", em analogia com o portal da transparência do governo,  a nossa  funcionalidade "Transparência" (Relatórios) irá informar ao cooperado dados financeiros e estatísticos. Pode-se refinar a pesquisa através de filtros como locais (Hospitais, Clinicas, postos...), data (apartir de, até, entre) e especialidade medica (pediatria, geriatria, psiquiatria(acho que preciso dessa(: !!)..), gerando um relatório com dados de 
 
-### Preview the build
+- Quantidade de Atendimento, 
+- faturamento, 
+- despesas, 
+- quantidades de médicos (caso não esteja visualizando somente seus dados), e
+- avaliações(avaliações globais das especialidades).
 
-This command serves the minified version of the app at `http://localhost:8080`
-in an unbundled state, as it would be served by a push-compatible server:
+Funcionalidade “Estatisticas”, Business Intelligence ou inteligência do negocio, é um conjunto de técnicas que auxiliam nas decisões estratégicas da empresa, nele informações recolhidas de diversos sistemas, elas são cruzadas  para que as empresas inteligentes (assim como acreditamos que é o pessoal unimed :D) tomem decisões inteligentes!! Iremos através da informações saber em quais áreas devem ser feitas campanhas direcionadas:
 
-    polymer serve build/unbundled
+- Consulta do casos de obesidade infantil em relação a geo-localização residencial
+- Consulta dos casos de alzheimer com relação a clínica
+- Consulta do faturamento por clínica por clínica
+- Consulta de gastos com saúde no plano por beneficiário em geo-localização
+- Consulta de inadimplência por geo-localização
 
-This command serves the minified version of the app at `http://localhost:8080`
-generated using fragment bundling:
-
-    polymer serve build/bundled
-
-### Run tests
-
-This command will run
-[Web Component Tester](https://github.com/Polymer/web-component-tester) against the
-browsers currently installed on your machine.
-
-    polymer test
-
-### Adding a new view
-
-You can extend the app by adding more views that will be demand-loaded
-e.g. based on the route, or to progressively render non-critical sections
-of the application.  Each new demand-loaded fragment should be added to the
-list of `fragments` in the included `polymer.json` file.  This will ensure
-those components and their dependencies are added to the list of pre-cached
-components (and will have bundles created in the fallback `bundled` build).
+Equipe Acro: **“Cuidando de quem cuida!!”**
+-----
