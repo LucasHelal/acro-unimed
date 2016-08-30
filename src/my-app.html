@@ -26,8 +26,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-primary-dark-color: #7B1FA2;
+        --app-primary-color: #9C27B0;
+        --app-primary-light-color: #E1BEE7;
+        --app-secondary-color: #FF5722;
+        --app-primary-text: #212121;
+        --app-secondary-text: #757575;
+        --app-disabled-text: #BDBDBD;
+        --app-white-text: #FFF; 
 
         display: block;
       }
@@ -37,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--app-primary-color);
       }
       app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
+        --paper-icon-button-ink-color: var(--app-white-text);
       }
 
       .drawer-list {
@@ -61,6 +67,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         font-weight: bold;
       }
+
+      .bio {
+        display: flex;
+        padding: 5rem 1rem 1rem 1rem;
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)),
+                          url('../images/background.jpg');
+        background-size: cover;
+      }
+      .bio .photo {
+        width: 40px;
+      }
+      .bio .photo img {
+        width: 100%;
+        border-radius: 50%;
+      }
+      .bio .text {
+        flex-grow: 1;
+        margin-left: 0.5rem;
+      }
+      .bio .name {
+        @apply(--paper-font-subhead);
+        color: var(--app-white-text);
+      }
+      .bio .info {
+        @apply(--paper-font-caption);
+        color: var(--app-white-text);
+      }
+      #img-logo {
+          display: block;
+          width: 60%;
+          margin-top: 1rem;
+          margin-left: 1rem;
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -70,19 +109,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <app-drawer-layout fullbleed>
+    <app-drawer-layout id="drawer-layout" fullbleed>
       <!-- Drawer content -->
-      <app-drawer>
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
-          <a name="view3" href="/view3">View Three</a>
+      <app-drawer id="drawer">
+        <div class="bio">
+          <div class="photo">
+            <img src="/images/avatar.png" alt="Avatar do médico"/>
+          </div>
+          <div class="text">
+            <div class="name">
+              Gabriela Vieira
+            </div>
+            <div class="info">
+              Neurologista
+            </div>
+          </div>
+        </div>
+        <iron-selector selected="[[page]]"
+                       attr-for-selected="name"
+                       class="drawer-list"
+                       role="navigation"
+                       on-iron-select="_handleSelect">
+          <a name="init" href="/">Início</a>
+          <a name="instituicao" href="/instituicao">Instituição</a>
+          <a name="transparencia" href="/transparencia">Transparência</a>
+          <a name="bi" href="/bi">Estatísticas</a>
+          <img id="img-logo" src="../images/logo2.png" alt="Logo Unimed"/>
         </iron-selector>
       </app-drawer>
 
       <!-- Main content -->
-      <app-header-layout has-scrolling-region>
+      <main>
+        <iron-pages selected="[[page]]"
+                    attr-for-selected="name"
+                    fallback-selection="404"
+                    role="main">
+          <view-init
+              name="init"
+              on-menu-click="_handleMenuClick"></view-init>
+          <view-instituicao
+              name="instituicao"
+              on-menu-click="_handleMenuClick"></view-instituicao>
+          <view-transparencia
+              name="transparencia"
+              on-menu-click="_handleMenuClick"></view-transparencia>
+          <view-avaliacoes
+              name="avaliacoes"
+              on-menu-click="_handleMenuClick"></view-avaliacoes>
+          <view-bi
+              name="bi"
+              on-menu-click="_handleMenuClick"></view-bi>
+          <view-404
+              name="404"
+              on-menu-click="_handleMenuClick"></view-404>
+        </iron-pages>
+      </main>
+      <!-- <app-header-layout has-scrolling-region>
 
         <app-header condenses reveals effects="waterfall">
           <app-toolbar>
@@ -90,18 +172,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div main-title>My App</div>
           </app-toolbar>
         </app-header>
+      </app-header-layout> -->
 
-        <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
-          <my-view1 name="view1"></my-view1>
-          <my-view2 name="view2"></my-view2>
-          <my-view3 name="view3"></my-view3>
-          <my-view404 name="view404"></my-view404>
-        </iron-pages>
-      </app-header-layout>
     </app-drawer-layout>
   </template>
 
@@ -122,17 +194,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'view1';
+        this.page = page || 'init';
       },
 
       _pageChanged: function(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+        var resolvedPageUrl = this.resolveUrl('view-' + page + '.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
       },
 
       _showPage404: function() {
-        this.page = 'view404';
+        this.page = '404';
+      },
+
+      _handleMenuClick: function() {
+        this.$.drawer.open();
+      },
+
+      _handleSelect: function () {
+        const isNarrow = this.$['drawer-layout'].narrow;
+        if (isNarrow) {
+          this.$.drawer.close();
+        }
       }
     });
   </script>

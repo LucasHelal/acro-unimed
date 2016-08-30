@@ -1,2 +1,0 @@
-# acro-unimed
-hackathon unimed
